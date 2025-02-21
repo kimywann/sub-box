@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Button from './AuthButton';
 
 const Header = () => {
@@ -5,10 +6,14 @@ const Header = () => {
     <header className="m-0 w-full p-3">
       <section className="mx-auto flex max-w-6xl justify-between">
         <div>
-          <p className="text-2xl font-bold text-blue-500">SubBox</p>
+          <Link to="/">
+            <p className="text-2xl font-bold text-blue-500">SubBox</p>
+          </Link>
         </div>
         <div>
-          <Button>로그인 | 회원가입</Button>
+          <Link to="/signin">
+            <Button>로그인 | 회원가입</Button>
+          </Link>
         </div>
       </section>
     </header>
