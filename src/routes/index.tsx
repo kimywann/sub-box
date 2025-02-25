@@ -1,9 +1,11 @@
-import RouteError from '../components/common/RouteError';
-import Layout from '../components/common/layout/Layout';
 import Home from '../pages/Home';
-import MySubscriptions from '../pages/MySubscriptions';
 import SignPage from '../pages/SignPage';
+import MySubscriptions from '../pages/MySubscriptions';
+
+import Layout from '../components/common/layout/Layout';
+
 import { createBrowserRouter } from 'react-router-dom';
+import RouteError from '../components/common/RouteError';
 
 const routeList = [
   {
