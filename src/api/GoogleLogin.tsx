@@ -3,17 +3,17 @@ import google from '../assets/images/google-logo.png';
 
 const GoogleLogin = () => {
   const handleLogin = async () => {
-    const { data, error } = await supabase.auth.signInWithOAuth({
+    const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
         queryParams: {
           access_type: 'offline',
           prompt: 'consent',
         },
+        redirectTo: 'http://localhost:5173/mypage',
       },
     });
 
-    if (data) alert('로그인 되었습니다.');
     if (error) console.error('로그인 실패:', error.message);
   };
 
