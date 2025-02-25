@@ -1,4 +1,10 @@
+import GoogleLogin from '../api/GoogleLogin';
+
 const SignPage = () => {
-  return <div className="mx-auto flex max-w-6xl">SignPage</div>;
+  return (
+    <>
+      <GoogleLogin />
+    </>
+  );
 };
 export default SignPage;
