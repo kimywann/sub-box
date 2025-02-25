@@ -1,6 +1,5 @@
 import Home from '../pages/Home';
 import SignPage from '../pages/SignPage';
-import MySubscriptions from '../pages/MySubscriptions';
 import MyPage from '../pages/MyPage';
 
 import Layout from '../components/common/layout/Layout';
@@ -16,10 +15,6 @@ const routeList = [
   {
     path: '/signin',
     element: <SignPage />,
-  },
-  {
-    path: '/subscriptions',
-    element: <MySubscriptions />,
   },
   {
     path: '/mypage',
