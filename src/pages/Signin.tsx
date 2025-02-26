@@ -1,10 +1,10 @@
 import GoogleLogin from '../api/GoogleLogin';
 
-const SignPage = () => {
+const Signin = () => {
   return (
     <>
       <GoogleLogin />
     </>
   );
 };
-export default SignPage;
+export default Signin;
