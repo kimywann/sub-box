@@ -1,6 +1,6 @@
 import Home from '../pages/Home';
-import SignPage from '../pages/SignPage';
-import MyPage from '../pages/MyPage';
+import Signin from '../pages/Signin';
+import MySubscriptions from '../pages/MySubscriptions';
 
 import Layout from '../components/common/layout/Layout';
 
@@ -14,11 +14,11 @@ const routeList = [
   },
   {
     path: '/signin',
-    element: <SignPage />,
+    element: <Signin />,
   },
   {
     path: '/mypage',
-    element: <MyPage />,
+    element: <MySubscriptions />,
   },
 ];
 
