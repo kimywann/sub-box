@@ -10,7 +10,6 @@ const GoogleLogin = () => {
           access_type: 'offline',
           prompt: 'consent',
         },
-        redirectTo: 'https://sub-box.vercel.app/mypage',
       },
     });
 
