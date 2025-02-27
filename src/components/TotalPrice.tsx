@@ -11,16 +11,35 @@ const TotalPrice = ({ subscriptions }: TotalPriceProps) => {
 
   // 날짜 포맷 함수
   const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
+    try {
+      const [year, month, day] = dateString.split('-').map(Number);
+      const date = new Date(year, month - 1, day);
+
+      if (isNaN(date.getTime())) {
+        return '유효하지 않은 날짜';
+      }
+
+      return date.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
+    } catch {
+      return '유효하지 않은 날짜';
+    }
   };
 
   // 만료일 계산 함수 (한 달 뒤)
   const calculateExpiryDate = (dateString: string) => {
-    const date = new Date(dateString);
-    const expiryDate = new Date(date);
-    expiryDate.setMonth(date.getMonth() + 1);
-    return formatDate(expiryDate.toISOString().split('T')[0]);
+    try {
+      const [year, month, day] = dateString.split('-').map(Number);
+      const date = new Date(year, month - 1, day);
+
+      if (isNaN(date.getTime())) {
+        return '유효하지 않은 날짜';
+      }
+
+      const expiryDate = new Date(year, month, day);
+      return formatDate(expiryDate.toISOString().split('T')[0]);
+    } catch {
+      return '유효하지 않은 날짜';
+    }
   };
 
   return (
@@ -37,8 +56,8 @@ const TotalPrice = ({ subscriptions }: TotalPriceProps) => {
                     <span className="font-medium">{subscription.price.toLocaleString()}원</span>
                   </div>
                   <div className="mt-1 text-sm text-gray-600">
-                    <div>구독 시작일: {formatDate(subscription.subscriptionDate)}</div>
-                    <div>다음 결제일: {calculateExpiryDate(subscription.subscriptionDate)}</div>
+                    <div>구독 시작일: {formatDate(subscription.subscription_date)}</div>
+                    <div>다음 결제일: {calculateExpiryDate(subscription.subscription_date)}</div>
                   </div>
                 </li>
               ))}
