@@ -20,9 +20,12 @@ const Header = () => {
   return (
     <header className="m-0 w-full p-3">
       <section className="mx-auto flex max-w-6xl justify-between">
-        <div>
+        <div className="flex items-center gap-10">
           <Link to="/">
             <p className="text-2xl font-bold text-blue-500">SubBox</p>
+          </Link>
+          <Link to="/mypage">
+            <p className="cursor-pointer text-sm text-gray-500 hover:text-blue-500">구독 내역</p>
           </Link>
         </div>
         <div>
