@@ -63,7 +63,7 @@ const TotalPrice = ({ subscriptions }: TotalPriceProps) => {
               ))}
             </ul>
             <div className="flex justify-between border-t border-gray-300 pt-2 font-bold">
-              <span>총 구독 비용</span>
+              <span>1개월 구독 비용</span>
               <span>{totalPrice.toLocaleString()}원</span>
             </div>
             <div className="flex justify-between pt-2 font-bold">
