@@ -3,15 +3,20 @@ import { useAuth } from '../hooks/useAuth';
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../supabaseClient';
 
-import { SubscriptionData } from '../types/subscriptionData';
+import { DatabaseSubscriptionData } from '../types/subscriptionData';
+import { ModalSubscriptionData } from '../types/subscriptionData';
+import { OttService, MusicService, ServiceType } from '../constants/serviceCategory';
 
 import ServiceBox from '../components/ServiceBox';
 import TotalPrice from '../components/TotalPrice';
+import SubscriptionModal from '../components/modal/SubscriptionModal';
 
 const MySubscriptions = () => {
   useRouteGuard();
   const { user } = useAuth();
-  const [subscriptions, setSubscriptions] = useState<SubscriptionData[]>([]);
+  const [subscriptions, setSubscriptions] = useState<DatabaseSubscriptionData[]>([]);
+  const [selectedSubscription, setSelectedSubscription] = useState<ModalSubscriptionData | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const loadSubscriptions = useCallback(async () => {
     try {
@@ -36,11 +41,10 @@ const MySubscriptions = () => {
     }
   }, [user?.email, loadSubscriptions]);
 
-  // 새로운 구독 저장 함수
-  const handleSaveSubscription = async (data: SubscriptionData) => {
+  const handleSaveSubscription = async (data: ModalSubscriptionData) => {
     try {
       const subscriptionData = {
-        user_email: user?.email,
+        user_email: user?.email || '',
         service: data.service,
         subscription_date: data.subscription_date,
         price: data.price,
@@ -54,12 +58,47 @@ const MySubscriptions = () => {
         console.error('구독 저장 에러:', error);
         return;
       }
-
-      // 저장 성공 후 목록 새로고침
       loadSubscriptions();
     } catch (error) {
       console.error('에러:', error);
     }
+  };
+
+  const handleDeleteSubscription = async (id: number) => {
+    try {
+      const { error } = await supabase.from('subscriptions').delete().eq('id', id);
+
+      if (error) {
+        console.error('구독 삭제 에러:', error);
+        return;
+      }
+      loadSubscriptions();
+    } catch (error) {
+      console.error('에러:', error);
+    }
+  };
+
+  const handleEditSubscription = (subscription: ModalSubscriptionData) => {
+    setSelectedSubscription(subscription);
+    setIsModalOpen(true);
+  };
+
+  const handleSaveEditedSubscription = async (data: ModalSubscriptionData) => {
+    await handleSaveSubscription(data);
+    setIsModalOpen(false);
+  };
+
+  // 서비스 이름으로 ServiceType 객체 찾기
+  const findServiceByName = (serviceName: string): ServiceType => {
+    const allServices = [...OttService, ...MusicService];
+    const foundService = allServices.find((service) => service.name === serviceName);
+
+    if (!foundService) {
+      // 서비스를 찾지 못한 경우 기본 객체 반환
+      return { name: serviceName, image: '' };
+    }
+
+    return foundService;
   };
 
   return (
@@ -70,7 +109,17 @@ const MySubscriptions = () => {
         </div>
       )}
       <ServiceBox onSaveSubscription={handleSaveSubscription} />
-      <TotalPrice subscriptions={subscriptions} />
+      <TotalPrice subscriptions={subscriptions} onDelete={handleDeleteSubscription} onEdit={handleEditSubscription} />
+
+      {selectedSubscription && (
+        <SubscriptionModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          service={findServiceByName(selectedSubscription.service)}
+          onSave={handleSaveEditedSubscription}
+          initialData={selectedSubscription}
+        />
+      )}
     </>
   );
 };

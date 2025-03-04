@@ -1,24 +1,25 @@
 import { useState } from 'react';
-import { OttService } from '../../constants/serviceCategory';
-import { SubscriptionData } from '../../types/subscriptionData';
+import { ServiceType } from '../../constants/serviceCategory';
+import { ModalSubscriptionData } from '../../types/subscriptionData';
 
 interface SubscriptionModalProps {
   isOpen: boolean;
   onClose: () => void;
-  service: (typeof OttService)[0];
-  onSave?: (data: SubscriptionData) => void;
+  service: ServiceType;
+  onSave?: (data: ModalSubscriptionData) => void;
+  initialData?: ModalSubscriptionData;
 }
 
-const SubscriptionModal = ({ isOpen, onClose, service, onSave }: SubscriptionModalProps) => {
-  const [subscriptionDate, setSubscriptionDate] = useState('');
-  const [price, setPrice] = useState('');
+const SubscriptionModal = ({ isOpen, onClose, service, onSave, initialData }: SubscriptionModalProps) => {
+  const [subscriptionDate, setSubscriptionDate] = useState(initialData?.subscription_date || '');
+  const [price, setPrice] = useState(initialData?.price ? String(initialData.price) : '');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const subscriptionData: SubscriptionData = {
+    const subscriptionData: ModalSubscriptionData = {
       service: service.name,
-      subscriptionDate,
+      subscription_date: subscriptionDate,
       price: Number(price),
     };
 
@@ -26,8 +27,6 @@ const SubscriptionModal = ({ isOpen, onClose, service, onSave }: SubscriptionMod
     if (onSave) {
       onSave(subscriptionData);
     }
-
-    console.log(subscriptionData);
     onClose();
   };
 
