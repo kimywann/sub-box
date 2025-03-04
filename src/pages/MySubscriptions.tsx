@@ -106,6 +106,7 @@ const MySubscriptions = () => {
       {user && (
         <div className="mx-auto max-w-6xl">
           <h1 className="mb-4 text-2xl font-bold">안녕하세요, {user.email}님!</h1>
+          <p className="mb-4 font-medium text-gray-400">서비스를 선택하여 구독 정보를 등록하세요.</p>
         </div>
       )}
       <ServiceBox onSaveSubscription={handleSaveSubscription} />
