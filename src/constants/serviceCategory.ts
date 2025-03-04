@@ -5,10 +5,11 @@ export type ServiceType = {
 
 export const OttService = [
   { name: 'Netflix', image: '/images/ott/Netflix.png' },
-  { name: 'Disney+', image: '/images/ott/Disney.png' },
-  { name: 'Wavve', image: '/images/ott/Wavve.png' },
   { name: 'Tving', image: '/images/ott/Tving.png' },
+  { name: 'Wavve', image: '/images/ott/Wavve.png' },
   { name: 'Watcha', image: '/images/ott/Watcha.png' },
+  { name: 'Laftel', image: '/images/ott/Laftel.png' },
+  { name: 'Disney+', image: '/images/ott/Disney.png' },
   { name: 'AppleTV+', image: '/images/ott/AppleTV+.jpeg' },
   { name: 'PrimeVideo', image: '/images/ott/PrimeVideo.png' },
 ];
@@ -38,4 +39,5 @@ export const EtcService = [
   { name: 'Kakao멤버십', image: '/images/etc/KakaoMembership.png' },
   { name: '배민클럽+', image: '/images/etc/WoowaBros.jpeg' },
   { name: '쿠팡와우+', image: '/images/etc/Coupang.jpeg' },
+  { name: 'Toss프라임', image: '/images/etc/TossPrime.png' },
 ];
