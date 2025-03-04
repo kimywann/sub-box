@@ -12,7 +12,9 @@ const Footer = () => {
               깃허브
             </a>
           </p>
-          <p className="mt-2 text-xs font-normal text-gray-500">서비스 피드백</p>
+          <p className="mt-2 text-xs font-normal text-gray-500">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfGTwHIAtpM2RwLJVKKRs6bSfDmLugB7I9ZtlYmfh7HYOxRig/viewform?usp=dialog">서비스 피드백</a>
+          </p>
         </div>
       </section>
     </footer>
