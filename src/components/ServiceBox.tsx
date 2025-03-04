@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { OttService, MusicService, ServiceType } from '../constants/serviceCategory';
+import { OttService, MusicService, AiService, EtcService, ServiceType } from '../constants/serviceCategory';
 import SubscriptionModal from './modal/SubscriptionModal';
 import { ModalSubscriptionData } from '../types/subscriptionData';
 
@@ -39,9 +39,38 @@ const ServiceBox = ({ onSaveSubscription }: ServiceBoxProps) => {
               </div>
             ))}
           </div>
+
           <h2 className="mb-4 text-xl font-bold text-gray-800">Music</h2>
           <div className="flex flex-row gap-4 overflow-x-auto pb-4">
             {MusicService.map((service) => (
+              <div
+                key={service.name}
+                className="flex h-32 w-32 flex-shrink-0 flex-col items-center justify-center rounded-md border border-gray-300 p-6 transition-colors hover:border-blue-500 hover:shadow-md"
+                onClick={() => handleServiceClick(service)}
+              >
+                <img src={service.image} alt={service.name} className="h-16 w-16 cursor-pointer object-contain" />
+                <span className="mt-2 text-sm">{service.name}</span>
+              </div>
+            ))}
+          </div>
+
+          <h2 className="mb-4 text-xl font-bold text-gray-800">AI</h2>
+          <div className="flex flex-row gap-4 overflow-x-auto pb-4">
+            {AiService.map((service) => (
+              <div
+                key={service.name}
+                className="flex h-32 w-32 flex-shrink-0 flex-col items-center justify-center rounded-md border border-gray-300 p-6 transition-colors hover:border-blue-500 hover:shadow-md"
+                onClick={() => handleServiceClick(service)}
+              >
+                <img src={service.image} alt={service.name} className="h-16 w-16 cursor-pointer object-contain" />
+                <span className="mt-2 text-sm">{service.name}</span>
+              </div>
+            ))}
+          </div>
+
+          <h2 className="mb-4 text-xl font-bold text-gray-800">Etc</h2>
+          <div className="flex flex-row gap-4 overflow-x-auto pb-4">
+            {EtcService.map((service) => (
               <div
                 key={service.name}
                 className="flex h-32 w-32 flex-shrink-0 flex-col items-center justify-center rounded-md border border-gray-300 p-6 transition-colors hover:border-blue-500 hover:shadow-md"
