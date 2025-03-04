@@ -1,11 +1,16 @@
-import { SubscriptionData } from '../types/subscriptionData';
+import { useState } from 'react';
+import { DatabaseSubscriptionData } from '../types/subscriptionData';
+import { ModalSubscriptionData } from '../types/subscriptionData';
 
 interface TotalPriceProps {
-  subscriptions: SubscriptionData[];
+  subscriptions: DatabaseSubscriptionData[];
+  onDelete: (id: number) => void;
+  onEdit: (subscription: ModalSubscriptionData) => void;
 }
 
-const TotalPrice = ({ subscriptions }: TotalPriceProps) => {
-  // 총 구독 비용 계산
+const TotalPrice = ({ subscriptions, onDelete, onEdit }: TotalPriceProps) => {
+  const [showDelete, setShowDelete] = useState(false);
+
   const totalPrice = subscriptions.reduce((total, subscription) => total + subscription.price, 0);
   const totalPricePerYear = totalPrice * 12;
 
@@ -42,28 +47,60 @@ const TotalPrice = ({ subscriptions }: TotalPriceProps) => {
     }
   };
 
+  const handleDeleteSubscription = (id: number) => {
+    if (onDelete) {
+      onDelete(id);
+    }
+  };
+
   return (
     <div className="mx-auto max-w-6xl">
       <div className="my-4 rounded-lg bg-blue-100 p-4">
-        <h2 className="mb-2 text-xl font-bold">내 구독 목록</h2>
+        <h2 className="mb-2 flex items-center justify-between text-xl font-bold">
+          내 구독 목록
+          <button
+            onClick={() => setShowDelete(!showDelete)}
+            className="cursor-pointer text-lg font-normal text-gray-500"
+          >
+            편집
+          </button>
+        </h2>
         {subscriptions.length > 0 ? (
           <>
             <ul className="mb-4">
               {subscriptions.map((subscription) => (
-                <li key={subscription.service} className="border-b border-gray-200 py-2">
+                <li key={subscription.service} className="py-2">
                   <div className="flex justify-between">
-                    <span className="font-medium">{subscription.service}</span>
-                    <span className="font-medium">{subscription.price.toLocaleString()}원</span>
+                    <span className="font-extrabold">{subscription.service}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium">{subscription.price.toLocaleString()}원</span>
+                      {showDelete && (
+                        <>
+                          <button
+                            onClick={() => onEdit(subscription)}
+                            className="cursor-pointer px-2 font-bold text-blue-400"
+                          >
+                            수정
+                          </button>
+                          <button
+                            onClick={() => handleDeleteSubscription(subscription.id)}
+                            className="cursor-pointer px-1 font-bold text-red-400"
+                          >
+                            삭제
+                          </button>
+                        </>
+                      )}
+                    </div>
                   </div>
-                  <div className="mt-1 text-sm text-gray-600">
-                    <div>구독 시작일: {formatDate(subscription.subscription_date)}</div>
-                    <div>다음 결제일: {calculateExpiryDate(subscription.subscription_date)}</div>
+                  <div className="text-sm text-gray-600">
+                    <div>구독 시작일 : {formatDate(subscription.subscription_date)}</div>
+                    <div>다음 결제일 : {calculateExpiryDate(subscription.subscription_date)}</div>
                   </div>
                 </li>
               ))}
             </ul>
-            <div className="flex justify-between border-t border-gray-300 pt-2 font-bold">
-              <span>1개월 구독 비용</span>
+            <div className="flex justify-between border-t border-gray-400 pt-2 font-bold">
+              <span>매월 구독 비용</span>
               <span>{totalPrice.toLocaleString()}원</span>
             </div>
             <div className="flex justify-between pt-2 font-bold">
