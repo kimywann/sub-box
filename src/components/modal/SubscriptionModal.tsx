@@ -13,12 +13,15 @@ interface SubscriptionModalProps {
 const SubscriptionModal = ({ isOpen, onClose, service, onSave, initialData }: SubscriptionModalProps) => {
   const [subscriptionDate, setSubscriptionDate] = useState(initialData?.subscription_date || '');
   const [price, setPrice] = useState(initialData?.price ? String(initialData.price) : '');
+  const [serviceName, setServiceName] = useState(initialData?.service || service.name);
+  // 서비스 이미지가 없거나 기본 목록에 없는 서비스인 경우 커스텀 서비스로 간주
+  const isCustomService = !service.image || service.image === '';
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     const subscriptionData: ModalSubscriptionData = {
-      service: service.name,
+      service: serviceName.trim(),
       subscription_date: subscriptionDate,
       price: Number(price),
     };
@@ -36,13 +39,27 @@ const SubscriptionModal = ({ isOpen, onClose, service, onSave, initialData }: Su
     <div className="fixed inset-0 flex items-center justify-center bg-black/20">
       <div className="w-96 rounded-lg bg-white p-6 shadow-xl">
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-xl font-bold">{service.name} 구독 정보</h2>
+          <h2 className="text-xl font-bold">{serviceName} 구독 정보</h2>
           <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
             ✕
           </button>
         </div>
 
         <form onSubmit={handleSubmit}>
+          {isCustomService && (
+            <div className="mb-4">
+              <label className="mb-2 block text-sm font-medium text-gray-700">서비스 이름</label>
+              <input
+                type="text"
+                value={serviceName}
+                onChange={(e) => setServiceName(e.target.value)}
+                className="w-full rounded-md border border-gray-300 p-2"
+                placeholder="서비스 이름을 입력하세요"
+                required
+              />
+            </div>
+          )}
+
           <div className="mb-4">
             <label className="mb-2 block text-sm font-medium text-gray-700">구독 시작일</label>
             <input
