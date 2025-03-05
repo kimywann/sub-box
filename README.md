@@ -1,50 +1,37 @@
-# React + TypeScript + Vite
+# SubBox - 구독 서비스 통합 관리 플랫폼
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📝 프로젝트 소개
 
-Currently, two official plugins are available:
+SubBox는 사용자들의 다양한 구독 서비스를 한눈에 관리할 수 있는 웹 서비스입니다. 여러 구독 서비스의 결제일과 비용을 쉽게 추적하고 관리할 수 있도록 도와줍니다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 🎯 주요 기능
 
-## Expanding the ESLint configuration
+- 구독 서비스 관리
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+  - 서비스 등록/수정/삭제
+  - 커스텀 서비스 직접 등록
+  - 카테고리별 서비스 분류 (OTT/음악/AI/기타)
+  - 월별/연간 구독 비용 자동 계산
 
-- Configure the top-level `parserOptions` property like this:
+- 사용자 인증
+  - Google OAuth 소셜 로그인
+  - 사용자별 구독 정보 관리
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### 🛠 기술 스택
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **Frontend**
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+  - React
+  - TypeScript
+  - Tailwind CSS
+  - React Router
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- **Backend & Database**
+
+  - Supabase (Authentication, Database)
+
+- **Development Tools**
+  - Vite
+  - Git
+  - GitHub
+  - Vercel (배포)
