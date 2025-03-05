@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ServiceType } from '../../constants/serviceCategory';
 import { ModalSubscriptionData } from '../../types/subscriptionData';
 
@@ -17,6 +17,15 @@ const SubscriptionModal = ({ isOpen, onClose, service, onSave, initialData }: Su
   // 서비스 이미지가 없거나 기본 목록에 없는 서비스인 경우 커스텀 서비스로 간주
   const isCustomService = !service.image || service.image === '';
 
+  // 모달이 열릴 때마다 초기값 설정
+  useEffect(() => {
+    if (isOpen) {
+      setSubscriptionDate(initialData?.subscription_date || '');
+      setPrice(initialData?.price ? String(initialData.price) : '');
+      setServiceName(initialData?.service || service.name);
+    }
+  }, [isOpen, initialData, service.name]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -29,8 +38,9 @@ const SubscriptionModal = ({ isOpen, onClose, service, onSave, initialData }: Su
     // 상위 컴포넌트로 구독 정보 전달
     if (onSave) {
       onSave(subscriptionData);
+    } else {
+      onClose();
     }
-    onClose();
   };
 
   if (!isOpen) return null;
