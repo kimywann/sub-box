@@ -6,6 +6,7 @@ import { supabase } from '../supabaseClient';
 import { DatabaseSubscriptionData } from '../types/subscriptionData';
 import { ModalSubscriptionData } from '../types/subscriptionData';
 import { OttService, MusicService, ServiceType } from '../constants/serviceCategory';
+import { AiService, EtcService } from '../constants/serviceCategory';
 
 import ServiceBox from '../components/ServiceBox';
 import TotalPrice from '../components/TotalPrice';
@@ -90,11 +91,11 @@ const MySubscriptions = () => {
 
   // 서비스 이름으로 ServiceType 객체 찾기
   const findServiceByName = (serviceName: string): ServiceType => {
-    const allServices = [...OttService, ...MusicService];
+    const allServices = [...OttService, ...MusicService, ...AiService, ...EtcService];
     const foundService = allServices.find((service) => service.name === serviceName);
 
     if (!foundService) {
-      // 서비스를 찾지 못한 경우 기본 객체 반환
+      // 서비스를 찾지 못한 경우 이미지 없이 이름만 반환
       return { name: serviceName, image: '' };
     }
 
