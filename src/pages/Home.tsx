@@ -1,7 +1,8 @@
 const Home = () => {
   return (
     <>
-      <section className="bg-[linear-gradient(180deg,transparent_50%,rgba(0,100,255,.1))] p-96">
+      {/* <section className="bg-[linear-gradient(180deg,transparent_50%,rgba(0,100,255,.1))] p-96"> */}
+      <section className="bg-white p-96">
         <p className="flex justify-center text-center text-4xl leading-tight font-bold whitespace-nowrap md:text-6xl">
           모든 구독을 한눈에 👀 <br />
           스마트하게 관리해요

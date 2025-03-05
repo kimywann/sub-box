@@ -1,4 +1,3 @@
-import Home from '../pages/Home';
 import Signin from '../pages/Signin';
 import MySubscriptions from '../pages/MySubscriptions';
 
@@ -10,15 +9,11 @@ import RouteError from '../components/common/RouteError';
 const routeList = [
   {
     path: '/',
-    element: <Home />,
+    element: <MySubscriptions />,
   },
   {
     path: '/signin',
     element: <Signin />,
-  },
-  {
-    path: '/mypage',
-    element: <MySubscriptions />,
   },
 ];
 

@@ -1,4 +1,4 @@
-import { useRouteGuard } from '../hooks/useRouteGuard';
+//import { useRouteGuard } from '../hooks/useRouteGuard';
 import { useAuth } from '../hooks/useAuth';
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../supabaseClient';
@@ -11,9 +11,10 @@ import { AiService, EtcService } from '../constants/serviceCategory';
 import ServiceBox from '../components/ServiceBox';
 import TotalPrice from '../components/TotalPrice';
 import SubscriptionModal from '../components/modal/SubscriptionModal';
+import Home from './Home';
 
 const MySubscriptions = () => {
-  useRouteGuard();
+  // useRouteGuard();
   const { user } = useAuth();
   const [subscriptions, setSubscriptions] = useState<DatabaseSubscriptionData[]>([]);
   const [selectedSubscription, setSelectedSubscription] = useState<ModalSubscriptionData | null>(null);
@@ -108,15 +109,21 @@ const MySubscriptions = () => {
   };
 
   return (
-    <>
-      {user && (
-        <div className="mx-auto max-w-6xl">
+    <div className="mx-auto max-w-6xl">
+      {user ? (
+        <>
           <span className="mb-4 text-2xl font-bold md:text-3xl">안녕하세요, {user.email}님!</span>
           <p className="mb-4 text-sm font-medium text-gray-400 md:text-xl">서비스를 선택하여 구독 정보를 등록하세요.</p>
-        </div>
+          <ServiceBox onSaveSubscription={handleSaveSubscription} />
+          <TotalPrice
+            subscriptions={subscriptions}
+            onDelete={handleDeleteSubscription}
+            onEdit={handleEditSubscription}
+          />
+        </>
+      ) : (
+        <Home />
       )}
-      <ServiceBox onSaveSubscription={handleSaveSubscription} />
-      <TotalPrice subscriptions={subscriptions} onDelete={handleDeleteSubscription} onEdit={handleEditSubscription} />
 
       {selectedSubscription && (
         <SubscriptionModal
@@ -127,7 +134,7 @@ const MySubscriptions = () => {
           initialData={selectedSubscription}
         />
       )}
-    </>
+    </div>
   );
 };
 
