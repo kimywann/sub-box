@@ -8,7 +8,7 @@ import { Analytics } from '@vercel/analytics/react';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <SpeedInsights />
-    <Analytics />
     <App />
+    <Analytics />
   </StrictMode>,
 );
