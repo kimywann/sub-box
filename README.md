@@ -4,6 +4,9 @@
 
 SubBox는 사용자들의 다양한 구독 서비스를 한눈에 관리할 수 있는 웹 서비스입니다. 여러 구독 서비스의 결제일과 비용을 쉽게 추적하고 관리할 수 있도록 도와줍니다.
 
+![SubBox](/public/images/docs/preview.png)
+![SubBox](/public/images/docs/preview2.png)
+
 ### 🎯 주요 기능
 
 - 구독 서비스 관리
