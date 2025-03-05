@@ -84,9 +84,14 @@ const MySubscriptions = () => {
     setIsModalOpen(true);
   };
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedSubscription(null);
+  };
+
   const handleSaveEditedSubscription = async (data: ModalSubscriptionData) => {
     await handleSaveSubscription(data);
-    setIsModalOpen(false);
+    handleCloseModal();
   };
 
   // 서비스 이름으로 ServiceType 객체 찾기
@@ -106,8 +111,8 @@ const MySubscriptions = () => {
     <>
       {user && (
         <div className="mx-auto max-w-6xl">
-          <h1 className="mb-4 text-2xl font-bold">안녕하세요, {user.email}님!</h1>
-          <p className="mb-4 font-medium text-gray-400">서비스를 선택하여 구독 정보를 등록하세요.</p>
+          <span className="mb-4 text-2xl font-bold md:text-3xl">안녕하세요, {user.email}님!</span>
+          <p className="mb-4 text-sm font-medium text-gray-400 md:text-xl">서비스를 선택하여 구독 정보를 등록하세요.</p>
         </div>
       )}
       <ServiceBox onSaveSubscription={handleSaveSubscription} />
@@ -116,7 +121,7 @@ const MySubscriptions = () => {
       {selectedSubscription && (
         <SubscriptionModal
           isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
+          onClose={handleCloseModal}
           service={findServiceByName(selectedSubscription.service)}
           onSave={handleSaveEditedSubscription}
           initialData={selectedSubscription}

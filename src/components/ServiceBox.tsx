@@ -24,10 +24,17 @@ const ServiceBox = ({ onSaveSubscription }: ServiceBoxProps) => {
     setIsModalOpen(true);
   };
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setIsCustomService(false);
+    setCustomServiceName('');
+  };
+
   const handleSaveSubscription = (data: ModalSubscriptionData) => {
     if (onSaveSubscription) {
       onSaveSubscription(data);
     }
+    handleCloseModal();
   };
 
   const handleCustomServiceNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -124,7 +131,7 @@ const ServiceBox = ({ onSaveSubscription }: ServiceBoxProps) => {
           <div className="w-96 rounded-lg bg-white p-6 shadow-xl">
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-xl font-bold">서비스 직접 입력</h2>
-              <button onClick={() => setIsModalOpen(false)} className="text-gray-500 hover:text-gray-700">
+              <button onClick={handleCloseModal} className="cursor-pointer text-gray-500 hover:text-gray-700">
                 ✕
               </button>
             </div>
@@ -142,7 +149,7 @@ const ServiceBox = ({ onSaveSubscription }: ServiceBoxProps) => {
             <div className="flex justify-end gap-2">
               <button
                 type="button"
-                onClick={() => setIsModalOpen(false)}
+                onClick={handleCloseModal}
                 className="rounded-md border border-gray-300 px-4 py-2 text-sm hover:bg-gray-50"
               >
                 취소
@@ -163,7 +170,7 @@ const ServiceBox = ({ onSaveSubscription }: ServiceBoxProps) => {
       {selectedService && !isCustomService && (
         <SubscriptionModal
           isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
+          onClose={handleCloseModal}
           service={selectedService}
           onSave={handleSaveSubscription}
         />
