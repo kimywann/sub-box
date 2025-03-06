@@ -24,9 +24,9 @@ const Header = () => {
           <Link to="/">
             <p className="text-2xl font-bold text-blue-500">SubBox</p>
           </Link>
-          <Link to="/mypage">
-            <p className="cursor-pointer text-sm text-gray-500 hover:text-blue-500">구독 내역</p>
-          </Link>
+          {/* <Link to="/mypage">
+            <p className="cursor-pointer text-sm text-gray-500 hover:text-blue-500"></p>
+          </Link> */}
         </div>
         <div>
           {user ? (
