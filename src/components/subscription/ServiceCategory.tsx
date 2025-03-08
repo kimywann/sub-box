@@ -22,7 +22,7 @@ const ServiceCategory = ({
         {services.map((service) => (
           <div
             key={service.name}
-            className="flex h-32 w-32 flex-shrink-0 flex-col items-center justify-center rounded-md border border-gray-300 p-6 transition-colors hover:border-blue-500 hover:shadow-md"
+            className="flex h-32 w-32 flex-shrink-0 flex-col items-center justify-center rounded-2xl border border-gray-300 p-6 transition-colors hover:border-blue-500 hover:shadow-md"
             onClick={() => onServiceClick(service)}
           >
             <img src={service.image} alt={service.name} className="h-16 w-16 cursor-pointer object-contain" />
@@ -32,7 +32,7 @@ const ServiceCategory = ({
 
         {showCustomButton && (
           <div
-            className="flex h-32 w-32 flex-shrink-0 flex-col items-center justify-center rounded-md border border-dashed border-blue-500 p-6 transition-colors hover:bg-blue-50 hover:shadow-md"
+            className="flex h-32 w-32 flex-shrink-0 flex-col items-center justify-center rounded-2xl border border-dashed border-blue-500 p-6 transition-colors hover:bg-blue-50 hover:shadow-md"
             onClick={onCustomClick}
           >
             <div className="flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-blue-100 text-2xl font-bold text-blue-500">

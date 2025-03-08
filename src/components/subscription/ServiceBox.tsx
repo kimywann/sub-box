@@ -54,7 +54,6 @@ const ServiceBox = ({ onSaveSubscription }: ServiceBoxProps) => {
         </div>
       </div>
 
-      {/* 커스텀 서비스 입력 모달 */}
       <ModalCustomForm
         isOpen={isCustomService}
         onClose={handleCloseModal}
