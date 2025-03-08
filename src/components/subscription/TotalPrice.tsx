@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { DatabaseSubscriptionData } from '../types/subscriptionData';
-import { ModalSubscriptionData } from '../types/subscriptionData';
+import { DatabaseSubscriptionData } from '../../types/subscriptionData';
+import { ModalSubscriptionData } from '../../types/subscriptionData';
 
 interface TotalPriceProps {
   subscriptions: DatabaseSubscriptionData[];

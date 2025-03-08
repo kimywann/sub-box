@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { OttService, MusicService, AiService, EtcService, ServiceType } from '../constants/serviceCategory';
+import { OttService, MusicService, AiService, EtcService, ServiceType } from '../../constants/serviceCategory';
 import SubscriptionModal from './modal/SubscriptionModal';
-import { ModalSubscriptionData } from '../types/subscriptionData';
+import { ModalSubscriptionData } from '../../types/subscriptionData';
 
 interface ServiceBoxProps {
   onSaveSubscription?: (data: ModalSubscriptionData) => void;
