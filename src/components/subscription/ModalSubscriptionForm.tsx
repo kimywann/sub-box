@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ServiceType } from '../../constants/serviceCategory';
-import { ModalSubscriptionData } from '../../types/subscriptionData';
+import { ModalSubscriptionData, BillingCycle } from '../../types/subscriptionData';
 
 interface ModalSubscriptionFormProps {
   isOpen: boolean;
@@ -15,6 +15,7 @@ const ModalSubscriptionForm = ({ isOpen, onClose, service, onSave, initialData }
   const [price, setPrice] = useState(initialData?.price ? String(initialData.price) : '');
   const [formattedPrice, setFormattedPrice] = useState(initialData?.price ? initialData.price.toLocaleString() : '');
   const [serviceName, setServiceName] = useState(initialData?.service || service.name);
+  const [billingCycle, setBillingCycle] = useState<BillingCycle>(initialData?.billing_cycle || 'monthly');
 
   const isCustomService = !service.image || service.image === '';
 
@@ -25,6 +26,7 @@ const ModalSubscriptionForm = ({ isOpen, onClose, service, onSave, initialData }
       setPrice(initialData?.price ? String(initialData.price) : '');
       setFormattedPrice(initialData?.price ? initialData.price.toLocaleString() : '');
       setServiceName(initialData?.service || service.name);
+      setBillingCycle(initialData?.billing_cycle || 'monthly');
     }
   }, [isOpen, initialData, service.name]);
 
@@ -47,6 +49,7 @@ const ModalSubscriptionForm = ({ isOpen, onClose, service, onSave, initialData }
       service: serviceName.trim(),
       subscription_date: subscriptionDate,
       price: Number(price),
+      billing_cycle: billingCycle,
     };
 
     // 상위 컴포넌트로 구독 정보 전달
@@ -93,6 +96,21 @@ const ModalSubscriptionForm = ({ isOpen, onClose, service, onSave, initialData }
               className="w-full rounded-md border border-gray-300 p-2"
               required
             />
+          </div>
+
+          <div className="mb-4">
+            <label className="mb-2 block text-sm font-medium text-gray-700">결제 주기</label>
+            <select
+              value={billingCycle}
+              onChange={(e) => setBillingCycle(e.target.value as BillingCycle)}
+              className="w-full rounded-md border border-gray-300 p-2"
+              required
+            >
+              <option value="weekly">매주</option>
+              <option value="biweekly">2주마다</option>
+              <option value="monthly">매월</option>
+              <option value="yearly">매년</option>
+            </select>
           </div>
 
           <div className="mb-6">
