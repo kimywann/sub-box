@@ -115,12 +115,12 @@ const MySubscriptions = () => {
         <>
           <span className="mb-4 text-2xl font-bold md:text-3xl">안녕하세요, {user.email}님!</span>
           <p className="mb-4 text-sm font-medium text-gray-400 md:text-xl">서비스를 선택하여 구독 정보를 등록하세요.</p>
-          <ServiceBox onSaveSubscription={handleSaveSubscription} />
           <TotalPrice
             subscriptions={subscriptions}
             onDelete={handleDeleteSubscription}
             onEdit={handleEditSubscription}
           />
+          <ServiceBox onSaveSubscription={handleSaveSubscription} />
         </>
       ) : (
         <Home />

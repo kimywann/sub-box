@@ -40,7 +40,7 @@ const ServiceBox = ({ onSaveSubscription }: ServiceBoxProps) => {
   return (
     <>
       <div className="mx-auto max-w-6xl">
-        <div className="mt-16 mb-6">
+        <div className="mt-8 mb-6">
           <ServiceCategory title="OTT" services={OttService} onServiceClick={handleServiceClick} />
           <ServiceCategory title="Music" services={MusicService} onServiceClick={handleServiceClick} />
           <ServiceCategory title="AI" services={AiService} onServiceClick={handleServiceClick} />
