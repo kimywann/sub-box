@@ -8,9 +8,10 @@ import { ModalSubscriptionData } from '../types/subscriptionData';
 import { OttService, MusicService, ServiceType } from '../constants/serviceCategory';
 import { AiService, EtcService } from '../constants/serviceCategory';
 
-import ServiceBox from '../components/ServiceBox';
-import TotalPrice from '../components/TotalPrice';
-import SubscriptionModal from '../components/modal/SubscriptionModal';
+import ServiceBox from '../components/subscription/ServiceBox';
+import TotalPrice from '../components/subscription/TotalPrice';
+import ModalSubscriptionForm from '../components/subscription/ModalSubscriptionForm';
+
 import Home from './Home';
 
 const MySubscriptions = () => {
@@ -126,7 +127,7 @@ const MySubscriptions = () => {
       )}
 
       {selectedSubscription && (
-        <SubscriptionModal
+        <ModalSubscriptionForm
           isOpen={isModalOpen}
           onClose={handleCloseModal}
           service={findServiceByName(selectedSubscription.service)}
