@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import { DatabaseSubscriptionData } from '../../types/subscriptionData';
 import { ModalSubscriptionData } from '../../types/subscriptionData';
+import {
+  formatDate,
+  calculateNextPaymentDate,
+  getYearlyPaymentCount,
+  getBillingCycleText,
+} from '../../utils/dateUtils';
 
 interface TotalPriceProps {
   subscriptions: DatabaseSubscriptionData[];
@@ -12,40 +18,11 @@ const TotalPrice = ({ subscriptions, onDelete, onEdit }: TotalPriceProps) => {
   const [showDelete, setShowDelete] = useState(false);
 
   const totalPrice = subscriptions.reduce((total, subscription) => total + subscription.price, 0);
-  const totalPricePerYear = totalPrice * 12;
 
-  // 날짜 포맷 함수
-  const formatDate = (dateString: string) => {
-    try {
-      const [year, month, day] = dateString.split('-').map(Number);
-      const date = new Date(year, month - 1, day);
-
-      if (isNaN(date.getTime())) {
-        return '유효하지 않은 날짜';
-      }
-
-      return date.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
-    } catch {
-      return '유효하지 않은 날짜';
-    }
-  };
-
-  // 만료일 계산 함수 (한 달 뒤)
-  const calculateExpiryDate = (dateString: string) => {
-    try {
-      const [year, month, day] = dateString.split('-').map(Number);
-      const date = new Date(year, month - 1, day);
-
-      if (isNaN(date.getTime())) {
-        return '유효하지 않은 날짜';
-      }
-
-      const expiryDate = new Date(year, month, day);
-      return formatDate(expiryDate.toISOString().split('T')[0]);
-    } catch {
-      return '유효하지 않은 날짜';
-    }
-  };
+  const totalPricePerYear = subscriptions.reduce((total, subscription) => {
+    const yearlyCount = getYearlyPaymentCount(subscription.billing_cycle);
+    return total + subscription.price * yearlyCount;
+  }, 0);
 
   const handleDeleteSubscription = (id: number) => {
     if (onDelete) {
@@ -55,7 +32,7 @@ const TotalPrice = ({ subscriptions, onDelete, onEdit }: TotalPriceProps) => {
 
   return (
     <div className="mx-auto max-w-6xl">
-      <div className="my-4 rounded-lg bg-blue-100 p-4">
+      <div className="my-4 rounded-3xl bg-blue-100 p-4">
         <h2 className="mb-2 flex items-center justify-between text-xl font-bold">
           내 구독 목록
           <button
@@ -94,7 +71,11 @@ const TotalPrice = ({ subscriptions, onDelete, onEdit }: TotalPriceProps) => {
                   </div>
                   <div className="text-sm text-gray-600">
                     <div>구독 시작일 : {formatDate(subscription.subscription_date)}</div>
-                    <div>다음 결제일 : {calculateExpiryDate(subscription.subscription_date)}</div>
+                    <div>
+                      다음 결제일 :{' '}
+                      {calculateNextPaymentDate(subscription.subscription_date, subscription.billing_cycle)}
+                    </div>
+                    <div>결제 주기 : {getBillingCycleText(subscription.billing_cycle)}</div>
                   </div>
                 </li>
               ))}

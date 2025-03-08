@@ -51,6 +51,7 @@ const MySubscriptions = () => {
         service: data.service,
         subscription_date: data.subscription_date,
         price: data.price,
+        billing_cycle: data.billing_cycle,
       };
 
       const { error } = await supabase.from('subscriptions').upsert([subscriptionData], {
