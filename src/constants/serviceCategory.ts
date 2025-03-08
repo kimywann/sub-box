@@ -23,7 +23,6 @@ export const MusicService = [
   { name: 'Bugs', image: '/images/music/Bugs.jpeg' },
   { name: 'VIBE', image: '/images/music/Vibe.jpeg' },
   { name: 'FLO', image: '/images/music/Flo.png' },
-  { name: 'AmazonMusic', image: '/images/music/AmazonMusic.jpeg' },
 ];
 
 export const AiService = [
