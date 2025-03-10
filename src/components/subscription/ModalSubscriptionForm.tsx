@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { ServiceType } from '../../constants/serviceCategory';
-import { ModalSubscriptionData, BillingCycle } from '../../types/subscriptionData';
+import { SubscriptionData, BillingCycle } from '../../types/subscriptionData';
 
 interface ModalSubscriptionFormProps {
   isOpen: boolean;
   onClose: () => void;
   service: ServiceType;
-  onSave?: (data: ModalSubscriptionData) => void;
-  initialData?: ModalSubscriptionData;
+  onSave?: (data: SubscriptionData) => void;
+  initialData?: SubscriptionData;
 }
 
 const ModalSubscriptionForm = ({ isOpen, onClose, service, onSave, initialData }: ModalSubscriptionFormProps) => {
@@ -45,7 +45,7 @@ const ModalSubscriptionForm = ({ isOpen, onClose, service, onSave, initialData }
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const subscriptionData: ModalSubscriptionData = {
+    const subscriptionData: SubscriptionData = {
       service: serviceName.trim(),
       subscription_date: subscriptionDate,
       price: Number(price),
