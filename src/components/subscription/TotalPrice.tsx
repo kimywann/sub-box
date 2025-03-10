@@ -17,7 +17,7 @@ interface TotalPriceProps {
 const TotalPrice = ({ subscriptions, onDelete, onEdit }: TotalPriceProps) => {
   const [showDelete, setShowDelete] = useState(false);
 
-  const totalPrice = subscriptions.reduce((total, subscription) => total + subscription.price, 0);
+  const totalMonthlyPrice = subscriptions.reduce((total, subscription) => total + subscription.price, 0);
 
   const totalPricePerYear = subscriptions.reduce((total, subscription) => {
     const yearlyCount = getYearlyPaymentCount(subscription.billing_cycle);
@@ -82,7 +82,7 @@ const TotalPrice = ({ subscriptions, onDelete, onEdit }: TotalPriceProps) => {
             </ul>
             <div className="flex justify-between border-t border-gray-400 pt-2 font-bold">
               <span>매월 구독 비용</span>
-              <span>{totalPrice.toLocaleString()}원</span>
+              <span>{totalMonthlyPrice.toLocaleString()}원</span>
             </div>
             <div className="flex justify-between pt-2 font-bold">
               <span>1년 합산 비용</span>
