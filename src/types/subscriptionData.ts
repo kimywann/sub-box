@@ -1,11 +1,11 @@
-export interface ModalSubscriptionData {
+export interface SubscriptionData {
   service: string;
   subscription_date: string;
   price: number;
   billing_cycle: BillingCycle;
 }
 
-export interface DatabaseSubscriptionData extends ModalSubscriptionData {
+export interface User extends SubscriptionData {
   id: number;
   user_email: string;
   created_at: string;
