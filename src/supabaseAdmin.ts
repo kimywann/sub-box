@@ -11,6 +11,7 @@ const supabaseAdmin = createClient(supabaseUrl, serviceRoleKey, {
   auth: {
     autoRefreshToken: false,
     persistSession: false,
+    storageKey: 'supabase-admin-key',
   },
 });
 
