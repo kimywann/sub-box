@@ -1,5 +1,5 @@
 import Signin from '@pages/Signin';
-import MySubscriptions from '@pages/MySubscriptions';
+import MyPage from '@/pages/MyPage';
 
 import Layout from '@components/layout/Layout';
 import RouteError from '@components/common/RouteError';
@@ -9,7 +9,7 @@ import { createBrowserRouter } from 'react-router-dom';
 const routeList = [
   {
     path: '/',
-    element: <MySubscriptions />,
+    element: <MyPage />,
   },
   {
     path: '/signin',
