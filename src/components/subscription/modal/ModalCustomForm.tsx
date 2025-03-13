@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { ServiceType } from '../../constants/serviceCategory';
+import { Service } from '@type/service';
 
 interface ModalCustomFormProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (customService: ServiceType) => void;
+  onSubmit: (customService: Service) => void;
 }
 
 const ModalCustomForm = ({ isOpen, onClose, onSubmit }: ModalCustomFormProps) => {
@@ -16,7 +16,7 @@ const ModalCustomForm = ({ isOpen, onClose, onSubmit }: ModalCustomFormProps) =>
 
   const handleCustomServiceSubmit = () => {
     if (customServiceName.trim()) {
-      const customService: ServiceType = {
+      const customService: Service = {
         name: customServiceName.trim(),
         image: '',
       };

@@ -1,30 +1,23 @@
 import { useState } from 'react';
-import { DatabaseSubscriptionData } from '../../types/subscriptionData';
-import { ModalSubscriptionData } from '../../types/subscriptionData';
-import {
-  formatDate,
-  calculateNextPaymentDate,
-  getYearlyPaymentCount,
-  getBillingCycleText,
-} from '../../utils/dateUtils';
+import { User } from '@type/user';
+import { Subscription } from '@type/subscription';
+import { formatDate, calculateNextPaymentDate, getBillingCycleText } from '@utils/date';
+import { useAtom } from 'jotai';
+import { totalMonthlyPriceAtom, totalYearlyPriceAtom } from '@store/subscriptionDetail';
 
 interface TotalPriceProps {
-  subscriptions: DatabaseSubscriptionData[];
+  subscriptions: User[];
   onDelete: (id: number) => void;
-  onEdit: (subscription: ModalSubscriptionData) => void;
+  onEdit: (subscription: Subscription) => void;
 }
 
 const TotalPrice = ({ subscriptions, onDelete, onEdit }: TotalPriceProps) => {
   const [showDelete, setShowDelete] = useState(false);
 
-  const totalMonthlyPrice = subscriptions.reduce((total, subscription) => total + subscription.price, 0);
+  const [totalMonthlyPrice] = useAtom(totalMonthlyPriceAtom);
+  const [totalYearlyPrice] = useAtom(totalYearlyPriceAtom);
 
-  const totalPricePerYear = subscriptions.reduce((total, subscription) => {
-    const yearlyCount = getYearlyPaymentCount(subscription.billing_cycle);
-    return total + subscription.price * yearlyCount;
-  }, 0);
-
-  const handleDeleteSubscription = (id: number) => {
+  const DeleteSubscription = (id: number) => {
     if (onDelete) {
       onDelete(id);
     }
@@ -32,7 +25,7 @@ const TotalPrice = ({ subscriptions, onDelete, onEdit }: TotalPriceProps) => {
 
   return (
     <div className="mx-auto max-w-6xl">
-      <div className="my-4 rounded-3xl bg-blue-100 p-4">
+      <div className="my-4 rounded-2xl bg-gray-100 p-4">
         <h2 className="mb-2 flex items-center justify-between text-xl font-bold">
           내 구독 목록
           <button
@@ -60,7 +53,7 @@ const TotalPrice = ({ subscriptions, onDelete, onEdit }: TotalPriceProps) => {
                             수정
                           </button>
                           <button
-                            onClick={() => handleDeleteSubscription(subscription.id)}
+                            onClick={() => DeleteSubscription(subscription.id)}
                             className="cursor-pointer px-1 font-bold text-red-400"
                           >
                             삭제
@@ -86,7 +79,7 @@ const TotalPrice = ({ subscriptions, onDelete, onEdit }: TotalPriceProps) => {
             </div>
             <div className="flex justify-between pt-2 font-bold">
               <span>1년 합산 비용</span>
-              <span>{totalPricePerYear.toLocaleString()}원</span>
+              <span>{totalYearlyPrice.toLocaleString()}원</span>
             </div>
           </>
         ) : (
