@@ -1,4 +1,4 @@
-import { BillingCycle } from '../types/subscriptionData';
+import { BillingCycle } from '@type/subscription';
 
 /**
  * YYYY-MM-DD 형식의 문자열을 한국어 날짜 형식으로 변환
