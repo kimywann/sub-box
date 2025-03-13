@@ -1,5 +1,5 @@
 import { supabase } from '../supabaseClient';
-import google from '../assets/images/google-logo.png';
+import google from '@assets/images/google-logo.png';
 
 const GoogleLogin = () => {
   const handleLogin = async () => {
@@ -8,9 +8,7 @@ const GoogleLogin = () => {
       options: {
         queryParams: {
           access_type: 'offline',
-          prompt: 'consent',
         },
-        redirectTo: 'http://localhost:5173/mypage',
       },
     });
 

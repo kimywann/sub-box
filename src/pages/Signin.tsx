@@ -1,4 +1,4 @@
-import GoogleLogin from '../api/GoogleLogin';
+import GoogleLogin from '@api/GoogleLogin';
 
 const Signin = () => {
   return (
