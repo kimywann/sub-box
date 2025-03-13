@@ -8,6 +8,7 @@ const GoogleLogin = () => {
       options: {
         queryParams: {
           access_type: 'offline',
+          prompt: 'consent',
         },
       },
     });
