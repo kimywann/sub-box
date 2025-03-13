@@ -29,7 +29,7 @@ const ModalCustomForm = ({ isOpen, onClose, onSubmit }: ModalCustomFormProps) =>
     <>
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/20">
-          <div className="w-96 rounded-lg bg-white p-6 shadow-xl">
+          <div className="w-96 rounded-2xl bg-white p-6 shadow-xl">
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-xl font-bold">서비스 직접 입력</h2>
               <button onClick={onClose} className="cursor-pointer text-gray-500 hover:text-gray-700">
