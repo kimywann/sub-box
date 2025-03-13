@@ -1,10 +1,10 @@
-import Signin from '../pages/Signin';
-import MySubscriptions from '../pages/MySubscriptions';
+import Signin from '@pages/Signin';
+import MySubscriptions from '@pages/MySubscriptions';
 
-import Layout from '../components/layout/Layout';
+import Layout from '@components/layout/Layout';
+import RouteError from '@components/common/RouteError';
 
 import { createBrowserRouter } from 'react-router-dom';
-import RouteError from '../components/common/RouteError';
 
 const routeList = [
   {
