@@ -4,6 +4,8 @@ import { useAuth } from '@hooks/useAuth';
 import { supabase } from '@/supabaseClient';
 import { deleteUser } from '@api/deleteUser';
 
+import logo from '@assets/images/logo.png';
+
 const Header = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -32,14 +34,14 @@ const Header = () => {
   };
 
   return (
-    <header className="m-0 w-full p-3">
-      <section className="mx-auto flex max-w-6xl justify-between">
-        <div className="flex items-center gap-10">
-          <Link to="/">
-            <p className="text-2xl font-bold text-blue-500">SubBox</p>
+    <header className="m-0 w-full p-0">
+      <section className="mx-auto flex max-w-6xl justify-between p-0">
+        <div className="flex items-center">
+          <Link to="/" className="block">
+            <img src={logo} alt="로고" className="h-8 w-28" />
           </Link>
         </div>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 p-3">
           {user ? (
             <>
               <AuthButton onClick={handleLogout}>로그아웃</AuthButton>
