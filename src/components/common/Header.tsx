@@ -38,7 +38,7 @@ const Header = () => {
       <section className="mx-auto flex max-w-6xl justify-between p-0">
         <div className="flex items-center">
           <Link to="/" className="block">
-            <img src={logo} alt="로고" className="h-8 w-28" />
+            <img src={logo} alt="로고" className="h-7 w-24" />
           </Link>
         </div>
         <div className="flex items-center gap-1 p-3">
