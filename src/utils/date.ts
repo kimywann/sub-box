@@ -121,7 +121,7 @@ export const calculateNextPaymentDate = (dateString: string, billingCycle: Billi
         while (
           nextYear < todayYear ||
           (nextYear === todayYear && nextMonth < todayMonth) ||
-          (nextYear === todayYear && nextMonth === todayMonth && nextDay < todayDay)
+          (nextYear === todayYear && nextMonth === todayMonth && nextDay <= todayDay)
         ) {
           // 7일 추가
           const tempDate = new Date(nextYear, nextMonth - 1, nextDay + 7);
