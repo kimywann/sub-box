@@ -52,8 +52,6 @@ SubBox는 사용자들의 다양한 구독 서비스를 한눈에 관리할 수 
   - React
   - TypeScript
   - Tailwind CSS
-  - React Router
-  - jotai (전역 상태관리 라이브러리)
 
 - **Backend**
 
