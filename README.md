@@ -22,10 +22,11 @@ SubBox는 사용자들의 다양한 구독 서비스를 한눈에 관리할 수 
 
 ### 반응형 UI
 
-<div style="display: flex; justify-content: center;">
-  <img src="./public/images/docs/Mobile.png" alt="반응형 UI" width="280" height="550" style="margin-right: 20px;"/>
+<p align="center">
+  <img src="./public/images/docs/Mobile.png" alt="반응형 UI" width="280" height="550"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="./public/images/docs/Mobile2.png" alt="반응형 UI" width="280" height="550"/>
-</div>
+</p>
 
 <br>
 
