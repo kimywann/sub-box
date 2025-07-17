@@ -20,6 +20,10 @@ SubBox는 사용자들의 다양한 구독 서비스를 한눈에 관리할 수 
 
 ![구독 목록 수정](./public/images/docs/demo_3.gif)
 
+### 반응형 UI
+
+![반응형 UI](./public/images/docs/Mobile.png)
+
 <br>
 
 - 구독 목록 관리
