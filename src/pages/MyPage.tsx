@@ -121,7 +121,7 @@ const MyPage = () => {
     <div className="mx-auto max-w-6xl">
       {user ? (
         <>
-          <span className="mb-4 text-2xl font-bold md:text-3xl">안녕하세요, {user.email}님!</span>
+          <span className="mb-4 text-xs font-bold sm:text-base md:text-xl">안녕하세요, {user.email}님!</span>
           <p className="mb-4 text-sm font-medium text-gray-400 md:text-xl">서비스를 선택하여 구독 정보를 등록하세요.</p>
           <SubscriptionSummary />
           <ServiceBox onSaveSubscription={handleSaveSubscription} />
