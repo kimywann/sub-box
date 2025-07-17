@@ -20,7 +20,8 @@ const SubscriptionList = ({ subscriptions, onDelete, onEdit }: SubscriptionListP
   const [totalMonthlyPrice] = useAtom(totalMonthlyPriceAtom);
   const [totalYearlyPrice] = useAtom(totalYearlyPriceAtom);
 
-  const DeleteSubscription = (id: number) => {
+  const DeleteSubscription = (e: React.MouseEvent, id: number) => {
+    e.stopPropagation();
     if (onDelete) {
       onDelete(id);
     }
@@ -67,7 +68,7 @@ const SubscriptionList = ({ subscriptions, onDelete, onEdit }: SubscriptionListP
                             수정
                           </button>
                           <button
-                            onClick={() => DeleteSubscription(subscription.id)}
+                            onClick={(e) => DeleteSubscription(e, subscription.id)}
                             className="cursor-pointer rounded px-3 py-1 text-sm font-medium text-red-600"
                           >
                             삭제
